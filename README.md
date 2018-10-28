@@ -32,7 +32,6 @@ request
 ```
 POST /api/v1/login
 Content-Type: application/json
-Authorization: Bearer eyJh...
 {
 	"username": "testing",	// required
 	"password": "123asd"	// required
