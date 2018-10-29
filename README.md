@@ -9,6 +9,7 @@ Most loved booking Gateway, only 3 steps to finish your booking problem
 	- [ B. Start an Order ](#b)
 		- [ B.1. Create Order ID ](#b1)
 		- [ B.2. Fill the Form ](#b2)
+		- [ B.3. Your API for product details ](#b3)
 	- [ C. Check Order Status ](#c)
 - [ History ](#history)
 - [ Credits ](#credits)
@@ -59,18 +60,26 @@ POST /api/v1/order
 Content-Type: application/json
 Authorization: Bearer eyJh...
 {
+	"user_id": "your-enduser-identifier-id",
 	"items": [
 		{
-			"name": "Buku",	// required
-			"price": 5000,	// required
-			"quantity": 1	// required
-		},...
+			"item_id": "255",	// required, will be used on section (B.3)
+			"name": "Buku",		// required
+			"price": 5000,		// required
+			"quantity": 1,		// required
+
+			"your-key": "test",
+			"your-another-key": "test",
+			...
+		},
+		...
 	],
 	"forms": [
 		{
 			"key": "NoHP",		// required
 			"hint": "Nomor HP"	// required
-		},...
+		},
+		...
 	]
 }
 ```
@@ -86,7 +95,8 @@ response
             "id": "8a58e93d-e1b7-4ff9-a443-3837374fe0e6", <-- item id
             ...
             "updated_at": "2018-10-28T19:45:38.60346+07:00"
-        },...
+        },
+        ...
     ]
 }
 ```
@@ -100,6 +110,20 @@ On this step, no authorization required.
 
 example form
 ![](image1.png "")
+
+<a name="b3"></a>
+#### B.3. Your API for product details
+In order to show your product details on checkout page, you need to provide the product information as details below:
+```
+{
+	"name": "Product name",
+	"price": "Rp 5000",
+	"imgurl": "https://your_product_image_url"
+	"description": "Your product description"
+}
+```
+
+let us discuss section above
 
 <a name="c"></a>
 ### C. Check Order Status
@@ -121,16 +145,20 @@ response
                 "id": "83c51bf8-cdba-4c70-b421-5cd4b5c5ea56",
                 ...
                 "updated_at": "2018-10-28T10:36:36Z"
-            },...
+            },
+            ...
         ]
     }
 ]
 ```
 
+or visit client administrator page `GET /admin`
+
 <a name="history"></a>
 ## History
 
-1. 28/10/2018: Initialization
+2. 29/10/2018: Penambahan halaman Admin, perubahan desain checkout.
+1. 28/10/2018: Inisialisasi
 
 <a name="credits"></a>
 ## Credits
